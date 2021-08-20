@@ -11,8 +11,8 @@ async function add(user) {
     return findById(id);
 }
 
-async function findById(id) {
-    return await db('users as u')
+function findById(id) {
+    return db('users as u')
         .select('u.id', 'u.username', 'u.password')
         .where('u.id', id)
         .first();
