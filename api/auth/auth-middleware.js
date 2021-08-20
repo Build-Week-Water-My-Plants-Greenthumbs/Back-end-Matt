@@ -19,7 +19,6 @@ function checkUsername(req, res, next) {
     Users.findBy({ username })
         .then(user => {
             if (user[0]) {
-                console.log('user: ', user)
                 res.status(406).json('username taken')
             } else {
                 next()
