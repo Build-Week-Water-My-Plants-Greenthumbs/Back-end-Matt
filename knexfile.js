@@ -31,17 +31,19 @@ module.exports = {
     production: {
         client: "pg",
         connection: {
-            database: process.env.DATABASE_URL,
-            // ssl: { rejectUnauthorized: false }
+            connectionString: process.env.DATABASE_URL,
+            ssl: { rejectUnauthorized: false },
+        },
+        pool: {
+            min: 2,
+            max: 10,
         },
         migrations: {
-            directory: "./data/migrations"
+            directory: "./data/migrations",
         },
         seeds: {
-            directory: "./data/seeds"
+            directory: "./data/seeds",
         },
-        useNullAsDefault: true,
-        debug: true
-    }
+    },
 
-};
+}
