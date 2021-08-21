@@ -19,7 +19,7 @@ router.post('/register', validate, checkUsername, (req, res, next) => {
     Users.add(user)
         .then(saved => {
             console.log('saved: ', saved)
-            res.status(201).json(saved)
+            res.status(201).json({ id: saved.id, username: saved.username })
         })
         .catch(err => next(err))
 })
