@@ -82,9 +82,9 @@ const plants = [{
 
 exports.seed = function(knex) {
     // Deletes ALL existing entries
-    return knex('plants').truncate()
-        .then(function() {
-            // Inserts seed entries
-            return knex('plants').insert(plants)
-        });
+    // return knex('plants').truncate()
+    // .then(function() {
+    // Inserts seed entries
+    return knex('plants').insert(plants)
+        // });
 };
