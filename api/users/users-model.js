@@ -2,7 +2,7 @@ const db = require('../../data/dbConfig')
 
 function findBy(filter) {
     return db('users as u')
-        .select('u.userId', 'u.username', 'u.password')
+        .select('u.userId', 'u.username', 'u.password', 'u.phone')
         .where(filter);
 }
 
@@ -13,7 +13,7 @@ async function add(user) {
 
 function findById(id) {
     return db('users as u')
-        .select('u.userId', 'u.username', 'u.password')
+        .select('u.userId', 'u.username', 'u.password', 'u.phone')
         .where('u.userId', id)
         .first();
 }
