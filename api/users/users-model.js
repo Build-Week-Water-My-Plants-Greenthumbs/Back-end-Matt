@@ -12,9 +12,9 @@ async function add(user) {
 }
 
 function findById(id) {
-    return db('users as u')
-        .select('u.userId', 'u.username', 'u.password', 'u.phone')
-        .where('u.userId', id)
+    return db('users')
+        .select('userId', 'username', 'password', 'phone')
+        .where('userId', id)
         .first()
 }
 
