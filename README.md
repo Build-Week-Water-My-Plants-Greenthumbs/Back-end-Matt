@@ -84,7 +84,6 @@ Success-Response:
 {
     "userId": 1,
     "username": "Don",
-    "password": "pass",
     "phone": "123-456-7899"
 }
 ```
