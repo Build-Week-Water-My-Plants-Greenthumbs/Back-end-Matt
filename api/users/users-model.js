@@ -7,9 +7,8 @@ function findBy(filter) {
 }
 
 async function add(user) {
-    const [newUserId] = await db('users').insert(user, ['username', 'password', 'phone']);
-    console.log('newUserId: ', newUserId);
-    return await findById(parseInt(newUserId))
+    const [id] = await db('users').insert(user, 'userId');
+    return db('users').where('userId', id).first();
 }
 
 function findById(id) {
