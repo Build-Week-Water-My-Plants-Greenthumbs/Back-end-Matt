@@ -4,24 +4,25 @@ Backend Project for ptpt-watermyplants-6 <br />
 Deployed Link is https://water-plants-matt.herokuapp.com/
 
 - [Auth](#auth)
-	- [Logs an User In](#logs-an-user-in)
+	- [Logs a User In](#logs-a-user-in)
 	- [Registers a New User](#registers-a-new-user)
 	
 
 - [Plants](#plants)
-	- [Deletes Plant based on provided Id](#deletes-class-based-on-provided-id)
-	- [Returns all Plants](#returns-all-classes)
-	- [Adds New Plant](#add-new-class)
-	- [Updates Plant with provided Id](#updated-class-with-provided-id)
+	- [Deletes Plant based on provided Id](#deletes-plant-based-on-provided-id)
+	- [Returns all Plants](#returns-all-plants)
+	- [Returns a Plant](#returns-a-plant)
+	- [Adds New Plant](#adds-new-plant)
+	- [Updates Plant with provided Id](#updates-plant-with-provided-id)
 	
 - [User](#user)
 	- [Updates a User](#updates-a-user)
 
 # Auth
 
-## Logs an User In
+## Logs a User In
 
-<p>Logs an User In</p>
+<p>Logs a User In</p>
 
 	POST /api/auth/login
 
@@ -39,8 +40,13 @@ Success-Response:
 
 ```
 {
-"message": "Welcome back don!",
+"message": "Welcome back Don!",
 "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NzE2MTI3MjcsImV4cCI6MTU3MTY5OTEyN30.FKIekAwXBPHRAf6ImjKHM_rKN9GrqLHcXMrpD4RpIB0",
+"loggedUser": {
+        "userId": 1,
+        "username": "Don",
+        "phone": "123-456-7890"
+    }
 }
 
 ```
@@ -201,6 +207,28 @@ Success-Response:
     }
 ```
 
+## Returns a Plant
+
+
+	GET /api/plants/:id
+
+
+### Success Response
+
+Success-Response:
+
+```
+{
+    name: "Peperomia Rosso",
+    nickname: "Rosalia",
+    plantId: 1,
+    species: "Peperomia caperata rosso",
+    light: "direct",
+    image: "https://cdn.shopify.com/s/files/1/2781/9558/products/PEPEROMIA_ROSSO-1_800x.png?v=1587156590",
+    frequency: 2,
+    description: "Rosalia is a stunner with glossy green leaves accompanied by bright red undersplantIdes. Her oval shaped leaves are deeply grooved, adding depth to her figure. Flower spikes will appear with bright light, adding even more character to this absolute beaut."
+}
+
 ## Adds New Plant
 
 
@@ -213,9 +241,9 @@ Success-Response:
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | name			| String			|  <p>The name of the plant *Required</p>							|
-| nicknamae			| String			|  <p>The nickname of the plant *Required</p>							|
+| nickname			| String			|  <p>The nickname of the plant *Required</p>							|
 | species			| String			|  <p>The species of the plant *Required</p>							|
-| frequency			| Integer			|  <p>The watering frequency of the plant *required</p>							|
+| frequency			| Integer			|  <p>The watering frequency of the plant *Required</p>							|
 | lastWatered       | Timestamp         | <p>The last time plant was watered, defaults to current time</p>    |1
 | light			| String			|  <p>The light preference of the plant</p>							|
 | image			| String			|  <p>The image url of the plant</p>							|
@@ -259,7 +287,7 @@ Invalid-Plant:
 
 
 
-	PUT /api/classes/:id
+	PUT /api/plants/:id
 
 
 ### Parameters
@@ -316,16 +344,16 @@ Invalid-Plant:
 
 <p>Updates a user with the id passed in the URL</p>
 
-	PUT /api/user/:id
+	PUT /api/users/:id
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| username			| String			|  <p>The New Users username</p>							|
-| password			| String			|  <p>The New Users password</p>							|
-| phone			| String			|  <p>The New Users phone number</p>							|
+| username			| String			|  <p>The Updated Users username</p>							|
+| password			| String			|  <p>The Updated Users password</p>							|
+| phone			| String			|  <p>The Updated Users phone number</p>							|
 
 ### Success Response
 
