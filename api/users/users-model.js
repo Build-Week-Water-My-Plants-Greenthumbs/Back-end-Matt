@@ -18,8 +18,14 @@ function findById(id) {
         .first()
 }
 
+async function update(id, user) {
+    await db('users').where('userId', id).update(user)
+    return await findById(id)
+}
+
 module.exports = {
     findBy,
     add,
-    findById
+    findById,
+    update
 }
