@@ -1,4 +1,6 @@
 const Users = require('../users/users-model')
+const jwt = require('jsonwebtoken')
+const jwtSecret = process.env.JWT_SECRET
 
 function validate(req, res, next) {
     const { username, password } = req.body;
@@ -27,7 +29,26 @@ function checkUsername(req, res, next) {
         .catch(next)
 }
 
+function restricted(req, res, next) {
+    const token = req.headers.authorization;
+
+    if (!token) {
+        return next({ status: 401, message: 'No token??' });
+    }
+
+    jwt.verify(token, jwtSecret, (err, decodedToken) => {
+        if (err) {
+            return next({ status: 401, message: 'Invalid token!' });
+        }
+
+        req.decodedToken = decodedToken;
+        next();
+    });
+};
+
+
 module.exports = {
     validate,
-    checkUsername
+    checkUsername,
+    restricted
 }
