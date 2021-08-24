@@ -8,6 +8,7 @@ exports.up = function(knex) {
             tbl.string('frequency', 256).notNullable()
             tbl.string('image', 256)
             tbl.string('light', 128)
+            tbl.timestamp('lastWatered').defaultTo(knex.fn.now())
             tbl.string('description', 2048)
         })
 }
