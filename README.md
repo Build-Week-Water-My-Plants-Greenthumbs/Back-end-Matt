@@ -228,7 +228,7 @@ Success-Response:
     frequency: 2,
     description: "Rosalia is a stunner with glossy green leaves accompanied by bright red undersplantIdes. Her oval shaped leaves are deeply grooved, adding depth to her figure. Flower spikes will appear with bright light, adding even more character to this absolute beaut."
 }
-
+```
 ## Adds New Plant
 
 
