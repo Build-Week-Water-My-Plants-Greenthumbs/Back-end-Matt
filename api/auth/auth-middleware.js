@@ -26,7 +26,17 @@ function checkUsername(req, res, next) {
                 next()
             }
         })
-        .catch(next)
+        .catch(err => next(err))
+}
+
+function checkPhone(req, res, next) {
+    Users.findBy(req.body.phone)
+        .then(user => {
+            if (user) {
+                res.status(400).json({ message: 'phone number already used' })
+            } else next()
+        })
+        .catch(err => next(err))
 }
 
 function restricted(req, res, next) {
@@ -50,5 +60,6 @@ function restricted(req, res, next) {
 module.exports = {
     validate,
     checkUsername,
+    checkPhone,
     restricted
 }

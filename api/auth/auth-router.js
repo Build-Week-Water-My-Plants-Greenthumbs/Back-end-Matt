@@ -6,9 +6,10 @@ const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken")
 const Users = require('../users/users-model')
 const jwtSecret = process.env.JWT_SECRET
-const { validate, checkUsername } = require('./auth-middleware')
 
-router.post('/register', validate, checkUsername, (req, res, next) => {
+const { validate, checkUsername, checkPhone } = require('./auth-middleware')
+
+router.post('/register', validate, checkUsername, checkPhone, (req, res, next) => {
 
     let user = req.body;
     const rounds = process.env.BCRYPT_ROUNDS || 8

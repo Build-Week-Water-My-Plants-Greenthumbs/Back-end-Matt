@@ -20,7 +20,22 @@ function validatePlant(req, res, next) {
     } else next()
 }
 
+function checkNameUnique(req, res, next) {
+    let { name } = req.body;
+    Plants.findBy({ name })
+        .then(plant => {
+            if (plant[0]) {
+                res.status(406).json('name taken')
+            } else {
+                next()
+            }
+        })
+        .catch(err => next(err))
+}
+
+
 module.exports = {
     validateId,
-    validatePlant
+    validatePlant,
+    checkNameUnique
 }
