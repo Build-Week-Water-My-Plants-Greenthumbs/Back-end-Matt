@@ -2,7 +2,7 @@ const express = require('express')
 const Plants = require('./plants-model')
 const router = express.Router()
 
-const { validateId, validatePlant } = require('./plants-middleware')
+const { validateId, validatePlant, checkNameUnique } = require('./plants-middleware')
 const { restricted } = require('../auth/auth-middleware')
 
 router.get('/', async(req, res) => {
@@ -25,7 +25,7 @@ router.delete('/:id', restricted, validateId, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.put('/:id', restricted, validateId, validatePlant, (req, res, next) => {
+router.put('/:id', restricted, validateId, validatePlant, checkNameUnique, (req, res, next) => {
     Plants.update(req.params.id, req.body)
         .then(updated => {
             res.json(updated)
@@ -33,7 +33,7 @@ router.put('/:id', restricted, validateId, validatePlant, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/', restricted, validatePlant, (req, res, next) => {
+router.post('/', restricted, validatePlant, checkNameUnique, (req, res, next) => {
     Plants.add(req.body)
         .then(plant => res.status(201).json(plant))
         .catch(err => next(err))
