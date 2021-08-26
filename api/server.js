@@ -20,6 +20,10 @@ server.use('/api/auth', authRouter)
 server.use('/api/plants', plantsRouter)
 server.use('/api/users', usersRouter)
 
+server.get('/', (req, res) => {
+    res.send('<h1>Water My Plants API</h1>')
+})
+
 server.use((err, req, res, next) => { // eslint-disable-line
 
     if (dbEnv === "production") {
